@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegiStep02.html</title>
+    <style>
+        .sign{
+            border: 1px solid black; width: 500px; height: 20px;
+            background-color: #f4ebeb;
+        }
+        .back{
+            border: 1px solid black; width: 500px; height: 200px;
+            background-color: white; 
+            padding-top: 50px;
+        }
+        #bnt{
+            margin-left: 130px;
+            float: left;
+            background-color: white;
+        }
+        .button:hover{
+            background-color:#e5e5e5;
+        } 
+    </style>
+        <script>   
+           function checkEmpty(){
+
+			var id = document.getElementById("id");
+			var password = document.getElementById("password");
+			var email = document.getElementById("email");
+			var gender = document.getElementsByName("gender");
+
+                if(id.value==''){
+                    alert('아이디를 입력하세요');
+                    id.focus();
+                    return;
+                }
+                if(password.value==''){
+                    alert('패스워드를 입력하세요');
+                    password.focus();
+                    return;
+                }
+                if(email.value==''){
+                    alert('이메일을 입력하세요');
+                    email.focus();
+                    return;
+                }
+                if(email.value.indexOf('@')==(-1)){
+                 	 alert('이메일에 @을 포함해 입력하세요');
+                 	 email.focus();
+                      return;
+                 }
+                 if(email.value.indexOf('.')==(-1)){
+   	               	 alert('이메일에 .을 포함해 입력하세요');
+   	               	 email.focus();
+   	                 return;
+                }
+                var isGender = false;
+                for(var i = 0; i<gender.length; i++){
+                    if(gender[i].checked == true){
+                        isGender = true;
+                        break;
+                    }
+                }
+                if(isGender != true){
+                    alert("성별을 선택해주세요");
+                    gender[0].focus();
+                    return false;
+                }
+                registFrm.submit();
+            } 
+           function back() {
+        	  history.back();
+   			}
+        </script>
+</head>
+<body>
+    <form name="registFrm" action="./RegiStep03.jsp" method="post" >
+    <div class="sign">
+     회원가입
+    </div>
+    <div class="back" style= padding-bottom:50px;>
+        <p style="padding-left: 40px;">
+            아이디&nbsp;&nbsp;&nbsp;
+            <input type="text" id="id" name="id">
+            <br> <br>
+            비밀번호
+            <input type="password" id="password" name="password">
+            <br> <br>
+            이메일&nbsp;&nbsp;&nbsp; <input type="text" id="email" name="email">
+            <br> <br>
+            성별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            <label for="male"><input type="radio" id="male" name="gender" value="남자" checked="checked">남자</label>
+            <label for="female"><input type="radio" name="gender" id="female"value="여자">여자</label>
+            <br> 
+        </p>
+       
+        <input type="button" value="이전" id="bnt" onclick="back();" style=" border: 1px solid black; width: 120px; height: 30px; text-align: center; ">
+       	<input type="button" value="다음" id="bnt" onclick="checkEmpty()" id="but" style=" border: 1px solid black; width: 120px; height: 30px; text-align: center;  margin-left: 20px;"/>
+     
+    </div>
+    </form>
+</body>
+</html>

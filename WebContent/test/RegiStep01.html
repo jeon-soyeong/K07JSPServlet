@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegiStep01.html</title>
+    <style>
+        .sign{
+            border: 1px solid black; width: 500px; height: 20px;
+            background-color: #f4ebeb;
+        }
+        .back{
+            border: 1px solid black; width: 500px; height: 200px;
+            background-color: white; 
+        }
+        .button{
+            margin-left: 130px;
+             border: 1px solid black; width: 120px; height: 30px; text-align: center; background-color: white;
+        }
+        .button:hover{
+            background-color:#e5e5e5;
+        } 
+    </style>
+        <script>
+            var ju1 = document.getElementById(ju1);
+            var ju2 = document.getElementById(ju2);
+            var name = document.getElementById(name);
+
+            var checkEmpty = function(frm){
+
+                if(frm.ju1.value==''){
+                    alert('주민번호 앞자리를 입력하세요');
+                    frm.ju1.focus();
+                    return false;
+                }
+                if(frm.ju2.value==''){
+                    alert('주민번호 뒷자리를 입력하세요');
+                    frm.ju2.focus();
+                    return false;
+                }
+                if(frm.name.value==''){
+                    alert('이름을 입력하세요');
+                    frm.name.focus();
+                    return false;
+                }
+            }
+            function fnJuminFocus(obj){
+            var strLength = obj.value.length;
+                if(strLength>=6){
+                    document.getElementById("ju2").focus();
+                }
+            }
+            function commonFocusMove(obj, mLength, next_obj){
+                var strLength = obj.value.length;
+                if(strLength>=mLength){
+                    document.getElementById(next_obj).focus();
+                }
+            }
+           
+                
+        </script>
+</head>
+<body>
+    <form name="registFrm" onsubmit="return checkEmpty(this);" action="RegiStep02.html">
+        <div class="sign">
+            실명확인
+        </div>
+        <div class="back" style="text-align: center; padding-top: 100px;">
+            주민번호   <input type="text" id="ju1" maxlength="6" size="6" onkeyup="fnJuminFocus(this);">
+            - 
+            <input type="text" id="ju2" maxlength="7" size="7" onkeyup="commonFocusMove(this,7,'name');">
+            <br><br>
+    
+            이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <input type="text" id="name">
+            <br><br>
+            <button class="button" type="submit" id="bnt">다음</button>
+        </div>
+    </form>
+</body>
+</html>
