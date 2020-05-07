@@ -47,4 +47,15 @@ public class MemberDTO {
 	public void setRegidate(java.sql.Date regidate) {
 		this.regidate = regidate;
 	}
+	
+	/*
+	Object클래스에서 제송하는 메소드로 객체를 문자열형태로 변형해서
+	반환해주는 역할을 한다. toString()메소드를 오버라이딩하면
+	객체 자체를 그대로 print()하는 것이 가능하다.
+	 */
+	@Override
+	public String toString() {
+		return String.format("아이디:%s, 비밀번호:%s, 이름:%s",
+				id, pass, name);
+	}
 }
