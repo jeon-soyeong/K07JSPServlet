@@ -212,6 +212,7 @@ public class BbsDAO {
 	 List컬렉션에 저장 후 반환하는 메소드 
 	 */
 	public List<BbsDTO> selectList(Map<String, Object> map){
+		
 		List<BbsDTO> bbs = new Vector<BbsDTO>();
 		//기본쿼리문
 		String query = "SELECT * FROM board";
@@ -249,6 +250,78 @@ public class BbsDAO {
 		}
 		return bbs;
 	}
+	
+	//게시판 리스트 페이지 처리
+	public List<BbsDTO> selectListPage(Map<String, Object> map){
+		
+		List<BbsDTO> bbs = new Vector<BbsDTO>();
+	
+		String query = " "
+				+"SELECT * FROM ( "
+				+"    SELECT Tb.*, ROWNUM rNum FROM ( "
+				+"    	SELECT * FROM board";
+		if(map.get("Word")!=null) {
+			query +=" WHERE " + map.get("Column") + " "
+				+" LIKE '%"+ map.get("Word") + "%' ";
+		}
+		query += " "
+				+" 		ORDER BY num DESC "
+				+"    ) Tb "
+				+" ) "
+				+" WHERE rNum BETWEEN ? AND ?";
+		System.out.println("쿼리문:" + query);	
+		
+		try {
+			psmt = con.prepareStatement(query);
+			
+			//JSP에서 계산한 페이지 범위값을 이용해 인파라미터를 설정함.
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
+			
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet의 갯수만큼 반복한다.
+			while(rs.next()) {
+				//하나의 레코드를 DTO객체에 저장하기 위해 새로운 객체생성
+				BbsDTO dto = new BbsDTO();
+				
+				//setter()메소드를 사용하여 컬럼에 데이터 저장
+				dto.setNum(rs.getString(1));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString(3));
+				dto.setPostDate(rs.getDate("postdate"));
+				dto.setId(rs.getString("id"));
+				dto.setVisitcount(rs.getString(6));
+				
+				//저장된 DTO객체를 List컬렉션에 추가
+				bbs.add(dto);
+			}
+		} catch (Exception e) {
+			System.out.println("Select시 예외발생");
+			e.printStackTrace();
+		}
+		return bbs;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
