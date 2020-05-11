@@ -37,8 +37,26 @@
  	<session-config>
   		<session-timeout>60</session-timeout>
  	</session-config> 
-  	
   
+  
+ <!--  
+	EL에서 Java클래스의 메소드 호출 절차 및 방법
+	1. 클래스와 메소드를 정의한다. 단 메소드 정의시 반드시 public static
+		으로 선언해야 한다.
+	2. TLD파일을 생성한다. Tag Library Description의 약자로
+		web-inf폴더 하위 아무곳이나 생성하면 컨테이너가 찾아서 사용하게 된다.
+		우리는 tlds 폴더를 생성한 후 해당 파일을 작성한다. 파일 작성시 fn.tld를 
+		참조한다. 
+	3. web.xml에 내가 정의한 태그라이브러리 파일을 설정한다.
+		taglib-uri : JSP의 taglib지시어의 uri속성에 삽입할 값
+		taglib-location : 실제 tld 파일의 위치(경로를 삽입함)
+-->
+  <jsp-config>
+  	<taglib>
+  		<taglib-uri>myTagLibTld</taglib-uri>
+  		<taglib-location>/WEB-INF/tlds/MyTagLib.tld</taglib-location>
+  	</taglib>
+  </jsp-config>
   
 <!-- 
 	 해당 웹어플리케이션을 실행했을 때 파일명을 명시하지 않으면
