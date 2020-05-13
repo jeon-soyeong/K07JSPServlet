@@ -40,5 +40,11 @@
 	    <function-signature>java.lang.String getGender(java.lang.String)</function-signature>
   	</function>
   	
+  	<function>
+	    <name>memberLogin</name>
+	    <function-class>eltag.MyTagLib</function-class>
+	    <function-signature>boolean memberLogin(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
+  	</function>
+  	
   	
 </taglib>
