@@ -58,6 +58,36 @@
   	</taglib>
   </jsp-config>
   
+  
+  <!-- 서블릿 등록(매핑)하기 -->
+  <servlet>
+  	<servlet-name>NoJSPServlet</servlet-name>
+  	<!-- 요청명과 매핑되는 서블릿 클래스명 기술(패키지명을 반드시 포함해야 함) -->
+  	<servlet-class>servlet.NoJSPServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<!-- 해당 요청이 들어왔을 때 호출할 서블릿의 이름을 지정 -->
+  	<servlet-name>NoJSPServlet</servlet-name>
+  	<!-- 요청명을 기술함 -->
+  	<url-pattern>/13Servlet/NoJSPServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>servlet.HelloServlet</servlet-class>
+  	<init-param>
+  		<param-name>HELLO</param-name>
+  		<param-value>Hi~Hello~안뇽~web.xml</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
 <!-- 
 	 해당 웹어플리케이션을 실행했을 때 파일명을 명시하지 않으면
 	 아래 파일리스트에 기술된 파일을 순서대로 찾아서 실행한다.
