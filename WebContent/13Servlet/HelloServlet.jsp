@@ -29,10 +29,12 @@
 	<br />
 	
 	<!-- 절대경로 -->
+	<!-- /K07JSPServlet/NoJSPServlet.do (이면 web.xml은 /NoJSPServlet.do) -->
 	<a href="/K07JSPServlet/13Servlet/NoJSPServlet.do">
 		JSP파일없이 화면에 결과 출력하기(Servlet에서 바로출력)-절대경로
 	</a>
 	
+	<!-- (/없으면) ./생략된 것과 같음 -->
 	<h3>HelloServlet</h3>
 	<h4>${message } - ${HELLO }</h4>
 	<h4><%=request.getAttribute("message") %></h4>
@@ -45,6 +47,43 @@
 	<a href="AnnoWebServlet.do">
 		AnnoWebServlet.do바로가기
 	</a>
+	
+	<h3>서블릿으로 간단한 사칙연산 계산기 만들기</h3>
+	<form method="get" action="<%=request.getContextPath()%>/Servlet/Calculate.kosmo">
+		<input type="text" name="firstNum" size="5" />
+		<select name="operator" >
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<input type="text" name="secondNum" size="5"/>
+		<input type="submit" value="연산결과는?"/>
+		<h4 style="color:red; font-size: 1.5em">
+			${calResult }
+		</h4>
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
