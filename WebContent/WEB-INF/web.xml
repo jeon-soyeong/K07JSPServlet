@@ -127,6 +127,7 @@
   
   
   <!-- 서블릿으로 게시판 만들기 -->
+  <!-- 자료실 리스트 -->
    <servlet>
   	<servlet-name>DataRoomList</servlet-name>
   	<servlet-class>controller.ListCtrl</servlet-class>
@@ -134,6 +135,45 @@
   <servlet-mapping>
   	<servlet-name>DataRoomList</servlet-name>
   	<url-pattern>/DataRoom/DataList</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 자료실 글쓰기 -->
+   <servlet>
+  	<servlet-name>DataRoomWrite</servlet-name>
+  	<servlet-class>controller.WriteCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomWrite</servlet-name>
+  	<url-pattern>/DataRoom/DataWrite</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 자료실 게시글보기(상세보기) -->
+   <servlet>
+  	<servlet-name>DataRoomView</servlet-name>
+  	<servlet-class>controller.ViewCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomView</servlet-name>
+  	<url-pattern>/DataRoom/DataView</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 수정/삭제 진입하기 전 패스워드 검증폼 -->
+   <servlet>
+  	<servlet-name>DataRoomPassword</servlet-name>
+  	<servlet-class>controller.PasswordCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomPassword</servlet-name>
+  	<url-pattern>/DataRoom/DataPassword</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>DataRoomDelete</servlet-name>
+  	<servlet-class>controller.DeleteCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomDelete</servlet-name>
+  	<url-pattern>/DataRoom/DataDelete</url-pattern>
   </servlet-mapping>
   
   
