@@ -176,6 +176,27 @@
   	<url-pattern>/DataRoom/DataDelete</url-pattern>
   </servlet-mapping>
   
+  <!-- 자료실 수정 -->
+   <servlet>
+  	<servlet-name>DataRoomEdit</servlet-name>
+  	<servlet-class>controller.EditCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomEdit</servlet-name>
+  	<url-pattern>/DataRoom/DataEdit</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 다운로드 -->
+   <servlet>
+  	<servlet-name>DataRoomDownload</servlet-name>
+  	<servlet-class>controller.DownloadCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomDownload</servlet-name>
+  	<url-pattern>/DataRoom/Download</url-pattern>
+  </servlet-mapping>
+  
   
   
   

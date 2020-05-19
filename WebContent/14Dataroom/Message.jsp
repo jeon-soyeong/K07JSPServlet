@@ -18,7 +18,7 @@
 	</c:otherwise>
 </c:choose>
 
-<%-- 
+<%--
 	수정을 성공하는 경우에는 상세보기 페이지로 돌아가고
 	삭제를 성공하는 경우에는 리스트 페이지로 로케이션된다.
 --%>
@@ -34,7 +34,7 @@
 		history.back();
 	</c:when>
 	<c:otherwise>
-		alert('파일용량을 초과했습니다');
+		alert('파일업로드 실패하였습니다.');
 		history.back();
 	</c:otherwise>
 </c:choose>

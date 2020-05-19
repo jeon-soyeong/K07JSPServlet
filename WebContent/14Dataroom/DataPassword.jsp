@@ -35,9 +35,9 @@
 				
 				<!-- 패스워드 검증을 위해 idx, mode는 서버로 전송해야 하므로
 					hidden폼에 값을 저장한다. -->
-				<input type="hid den" name="idx" value="${param.idx }" />
-				<input type="hid den" name="mode" value="${mode }"/>
-				<input type="hid den" name="nowPage" value=""/>
+				<input type="hidden" name="idx" value="${param.idx }" />
+				<input type="hidden" name="mode" value="${mode }"/>
+				<input type="hidden" name="nowPage" value=""/>
 				
 			<div class="row mt-3 mr-1">
 				<table class="table table-bordered table-striped">
@@ -60,18 +60,9 @@
 			</div>
 			<div class="row mb-3">
 				<div class="col text-right">
-					<!-- 각종 버튼 부분 -->
-					<!-- <button type="button" class="btn">Basic</button> -->
-					<!-- <button type="button" class="btn btn-primary" 
-						onclick="location.href='BoardWrite.jsp';">글쓰기</button> -->
-					<!-- <button type="button" class="btn btn-secondary">수정하기</button>
-					<button type="button" class="btn btn-success">삭제하기</button>
-					<button type="button" class="btn btn-info">답글쓰기</button>
-					<button type="button" class="btn btn-light">Light</button>
-					<button type="button" class="btn btn-link">Link</button> -->
 					<button type="submit" class="btn btn-danger">전송하기</button>
 					<button type="reset" class="btn btn-dark">Reset</button>
-					<button type="button" class="btn btn-warning" onclick="location.href='BoardList.jsp';">리스트보기</button>
+					<button type="button" class="btn btn-warning" onclick="location.href='../DataRoom/DataList?nowPage=${param.nowPage}&searchColumn=${param.searchColumn}&searchWord=${param.searchWord}';">리스트보기</button>
 				</div>
 			</div>
 				</form>

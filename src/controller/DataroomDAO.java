@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import model.BbsDTO;
@@ -36,6 +38,20 @@ public class DataroomDAO {
 		e.printStackTrace();
 	}
 }	
+	
+	public DataroomDAO(ServletContext ctx) {
+		try {
+			Class.forName(ctx.getInitParameter("JDBCDriver"));
+			String id = "kosmo";
+			String pw = "1234";
+			con = DriverManager.getConnection(ctx.getInitParameter("ConnectionURL"), id, pw);
+			System.out.println("DB 연결성공^^*");
+		} catch (Exception e) {
+			System.out.println("DB 연결실패");
+			e.printStackTrace();
+		}
+	}
+	
 	//자원반납하기 :  DB연결 자체를 끊는 것이 아니라 커넥션풀에 커넥션개체를 반납하는 것
 	public void close() {
 		try {
@@ -216,11 +232,95 @@ public class DataroomDAO {
 		return affected;
 	}
 	
+	public int update(DataroomDTO dto) {
+		int affected = 0;
+		try {
+			String query = "UPDATE dataroom SET title=?, name=?, content=?, attachedfile=?, pass=? WHERE idx=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getAttachedfile());
+			psmt.setString(5, dto.getPass());
+			
+			//게시물 수정을 위한 추가부분
+			psmt.setString(6, dto.getIdx());
+			
+			affected = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Update중 예외발생");
+			e.printStackTrace();
+		}
+		return affected;
+	}
 	
+	public void downCountPlus(String idx) {
+		String sql = "UPDATE dataroom SET downcount = downcount+1 WHERE idx=? ";
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, idx);
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			
+		}
+	}
 	
-	
-	
-	
+	public List<DataroomDTO> selectListPage(Map map){
+		
+		List<DataroomDTO> bbs = new Vector<DataroomDTO>();
+		
+		String sql = " "
+				+"SELECT * FROM ( "
+				+"    SELECT Tb.*, ROWNUM rNum FROM ( "
+				+"    	SELECT * FROM dataroom";
+		if(map.get("Word")!=null) {
+			sql +=" WHERE " + map.get("Column") + " "
+				+" LIKE '%"+ map.get("Word") + "%' ";
+		}
+		sql += " "
+				+" 		ORDER BY idx DESC "
+				+"    ) Tb "
+				+" ) "
+				+" WHERE rNum BETWEEN ? AND ?";
+		System.out.println("쿼리문:" + sql);	
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			
+			//JSP에서 계산한 페이지 범위값을 이용해 인파라미터를 설정함.
+			psmt.setInt(1,
+					Integer.parseInt(map.get("start").toString()));
+					
+			psmt.setInt(2, 
+					Integer.parseInt(map.get("end").toString()));
+			
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet의 갯수만큼 반복한다.
+			while(rs.next()) {
+				//하나의 레코드를 DTO객체에 저장하기 위해 새로운 객체생성
+				DataroomDTO dto = new DataroomDTO();
+				
+				//setter()메소드를 사용하여 컬럼에 데이터 저장
+				dto.setIdx(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setPostdate(rs.getDate(5));
+				dto.setAttachedfile(rs.getString(6));
+				dto.setDowncount(rs.getInt(7));
+				dto.setPass(rs.getString(8));
+				dto.setVisitcount(rs.getInt(9));
+				
+				//저장된 DTO객체를 List컬렉션에 추가
+				bbs.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bbs;
+	}
+
 	
 	
 	

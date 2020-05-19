@@ -73,11 +73,11 @@
 					<c:otherwise>
 						<c:forEach items="${lists }" var="row" varStatus="loop">
 							<tr>
-								<td class="text-center">
+								<td class="text-center"><!-- 가상번호 -->
 									${map.totalCount - (((map.nowPage-1) * map.pageSize) + loop.index) }
 								</td>
 								<td class="text-left">
-									<a href="../DataRoom/DataView?idx=${row.idx}&nowPage=${param.nowPage}">${row.title }</a>
+									<a href="../DataRoom/DataView?idx=${row.idx}&nowPage=${param.nowPage}&searchColumn=${param.searchColumn}&searchWord=${param.searchWord}">${row.title }</a>
 								</td>
 								<td class="text-center">${row.name }</td>
 								<td class="text-center">${row.postdate }</td>
@@ -116,13 +116,13 @@
 			<div class="row mt-3">
 				<div class="col">
 					<!-- 페이지번호 기본이미지 -->
-					<div style="text-align: center; padding:0 0 10px 0;">
-					
-					</div>
+					<%-- <div style="text-align: center; padding:0 0 10px 0;">
+						${map.pagingImg }
+					</div> --%>
 					
 					<!-- 페이지번호 부트스트랩4 적용 -->
 					<ul class='pagination justify-content-center'>
-					
+						${map.pagingImg }
 					</ul>
 				</div>				
 			</div>		
