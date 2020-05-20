@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/* reset */
+html {overflow-y:scroll}
+body {margin:0;padding:0;font-size:0.75em;font-family:'돋움', Dotum , sans-serif;height:auto;color:#484848 ;}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+ul,li,ol,dl,dd,dt{list-style:none;padding:0;margin:0;font-size:1em}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
+label, input, button, select, img {vertical-align:middle}
+input, button {margin:0;padding:0;}
+button {cursor:pointer;font-family:'돋움', Dotum , sans-serif;border:none;padding:0;background:#fff;outline:0}
+input[type="submit"]{cursor:pointer;}
+textarea, select {font-family:'돋움', Dotum;font-size:1em}
+select {margin:0;padding:0}
+p {margin:0;padding:0;word-break:break-all}
+hr {display:none}
+pre {overflow-x:scroll;}
+a, a:link, a:visited {color:#000;text-decoration:none}
+a:hover{text-decoration:underline;color:#ff5191}
+a:focus, a:active {color:#000;text-decoration:none;}
+
+
+/* 본문 */
+
+#chat-wrapper{margin:20px auto;width:580px;border-radius:10px 10px 0 0;background:#edecea;}
+#chat-header{background:url('../img/ctrl.png') #cecece 510px 20px no-repeat;padding:25px;border-radius:10px 10px 0 0}
+#chat-header h1{font-size:14px;}
+#chat-container{padding:20px}
+#chat-container:after{display:block;visibility:hidden;clear:both;content:"";}
+#chat-footer{background:#CECECE;padding:20px;}
+#chat-footer p.text-area{background:#fff;min-height:65px;border-radius:5px}
+#chat-footer p.text-area button{float:right;padding:25px 20px;border-radius:5px;background:#777;color:#fff;}
+
+/* 채팅 말풍선 */
+.chat{position:relative;width:100%;margin-bottom:10px}
+.chat:after{display:block;visibility:hidden;clear:both;content:"";}
+.chat .bubble{display:inline-block;max-width:300px;padding:10px;background:#fff;border-radius:5px;line-height:16px;}
+.chat .bubble-me{display:inline-block;max-width:300px;padding:10px;background:#D3E3F4;border-radius:5px;line-height:16px;}
+
+/* 왼쪽 채팅 */
+.chat-left .profile{float:left;display:inline-block;width:70px;height:70px;}
+.chat-left .chat-box{display:inline-block;margin:15px 0 0 10px;}
+
+/* -- 프로필 이미지 타입 -- */
+.chat-left .profile-img-a{background:url('../img/profile-a.png') 0 0 no-repeat;}
+.chat-left .profile-img-b{background:url('../img/profile-b.png') 0 0 no-repeat;}
+.chat-left .profile-img-c{background:url('../img/profile-c.png') 0 0 no-repeat;}
+.chat-left .profile-img-d{background:url('../img/profile-d.png') 0 0 no-repeat;}
+
+.chat-left .bubble{margin-left:10px;}
+.chat-left .bubble .bubble-tail{position:absolute;left:84px;top:25px;width:9px;height:10px;background: url('../img/bubble-tail.png') 0 0 no-repeat;text-indent:-9999px}
+
+/* -- 오른쪽 채팅 -- */
+
+.chat-right{text-align:right}
+.chat-right .profile{float:right;display:inline-block;width:70px;height:70px;}
+.chat-right .chat-box{display:inline-block;margin:15px 10px 0 0;}
+
+/* 프로필 이미지 타입 */
+.chat-right .profile-img-a{background:url('../img/profile-a.png') 0 0 no-repeat;}
+.chat-right .profile-img-b{background:url('../img/profile-b.png') 0 0 no-repeat;}
+.chat-right .profile-img-c{background:url('../img/profile-c.png') 0 0 no-repeat;}
+.chat-right .profile-img-d{background:url('../img/profile-d.png') 0 0 no-repeat;}
+
+.chat-right .bubble-me{margin-right:10px;}
+.chat-right .bubble-tail{position:absolute;right:84px;top:25px;width:9px;height:10px;background: url('../img/bubble-tail-right.png') 0 0 no-repeat;text-indent:-9999px}
+
+
